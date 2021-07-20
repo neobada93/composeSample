@@ -65,6 +65,10 @@ dependencies {
     implementation "com.google.accompanist:accompanist-insets:0.12.0"
     implementation "com.google.accompanist:accompanist-insets-ui:0.12.0"
 
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+
+
     // Image Loading Library
     implementation "com.google.accompanist:accompanist-coil:0.12.0"
 
