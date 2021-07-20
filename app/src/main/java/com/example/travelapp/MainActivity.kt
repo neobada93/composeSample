@@ -47,13 +47,15 @@ class MainActivity : ComponentActivity() {
 
                         val scaffoldState = rememberScaffoldState()
 
+                        //좌측에 폴더 여는 기능
+
                         Scaffold(
                             scaffoldState = scaffoldState,
                             drawerContent = {
                                 Text(text = "SCAFOLDR")
                             }
                         ){
-                            Surface(
+                            Surface(  // 표면 화면
                                         modifier = Modifier.fillMaxSize(),
                                         color = MaterialTheme.colors.background
                                     ) {
@@ -63,19 +65,19 @@ class MainActivity : ComponentActivity() {
                                             startDestination = "splash"
                                         ) {
 
-
+//스프레쉬 화면
                                             composable("splash") {
 
                                                 SplashScreen(navController)
 
                                             }
-
+// 홈화면
                                             composable("home") {
 
                                                 HomeScreen(navController)
 
                                             }
-
+// 상세 화면
                                             composable("detail") {
                                                 DetailScreen(navController)
                                             }
