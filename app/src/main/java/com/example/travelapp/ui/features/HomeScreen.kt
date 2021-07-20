@@ -35,12 +35,13 @@ import java.time.format.TextStyle
 @Composable
 fun HomeScreen(navController: NavController) {
 
+//스크롤 되는 컬럼들
 
     LazyColumn(modifier = Modifier.fillMaxWidth()) {
 
 
         item {
-            HomeHeader()
+            HomeHeader(navController = navController)
         }
 
         item {
@@ -58,10 +59,12 @@ fun HomeScreen(navController: NavController) {
             )
         }
 
+        // 리스트 인덱스 만큼 루프를 돔
         itemsIndexed(tripListing) { position, data ->
             HomeTripItem(homeTripModel = data,navController = navController)
         }
 
+        // 네비게이션 만큼 공간을 띄움
         item {
             Spacer(modifier = Modifier.navigationBarsPadding())
         }
@@ -72,8 +75,7 @@ fun HomeScreen(navController: NavController) {
 
 
 @Composable
-@Preview
-fun HomeHeader() {
+fun HomeHeader(navController: NavController) {
 
     val homeHeaderBg = "https://www.4freephotos.com/medium/2015/Blue-blurry-background-5731.jpg"
 
@@ -122,10 +124,11 @@ fun HomeHeader() {
             ) {
 
 
-                VerticalButton(vector = Icons.Filled.AirplanemodeActive, text = "Flights")
-                VerticalButton(vector = Icons.Filled.DirectionsCar, text = "Cars")
-                VerticalButton(vector = Icons.Filled.Business, text = "Hotel")
-                VerticalButton(vector = Icons.Filled.LocalShipping, text = "Cruise")
+                // 새로로 버튼등을 등록 함
+                VerticalButton(vector = Icons.Filled.AirplanemodeActive, text = "Flights", navController)
+                VerticalButton(vector = Icons.Filled.DirectionsCar, text = "Cars", navController)
+                VerticalButton(vector = Icons.Filled.Business, text = "Hotel", navController)
+                VerticalButton(vector = Icons.Filled.LocalShipping, text = "Cruise", navController)
 
             }
 
@@ -138,10 +141,10 @@ fun HomeHeader() {
 }
 
 @Composable
-fun VerticalButton(vector: ImageVector, text: String) {
+fun VerticalButton(vector: ImageVector, text: String,navController: NavController) {
 
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { navController.navigate("splash") },
         shape = RoundedCornerShape(8.dp)
     ) {
 
@@ -179,6 +182,8 @@ fun HomeTripItem(homeTripModel: HomeTripModel,navController: NavController) {
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
 
+        //이미지, 글자 ,타이틀
+        
         Image(
             painter = rememberCoilPainter(request = homeTripModel.image, fadeIn = true),
             contentDescription = "",
@@ -203,6 +208,7 @@ fun HomeTripItem(homeTripModel: HomeTripModel,navController: NavController) {
                 fontSize = 12.sp,
             )
 
+            //공간을 띄움
             Spacer(modifier = Modifier.weight(1f))
 
             Icon(
